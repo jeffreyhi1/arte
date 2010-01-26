@@ -12,3 +12,4 @@ It manages a continuous connection with the server. It create a *customizable lo
   # [http://code.google.com/p/arte/wiki/Examples Examples]
 
 = Quick Overview =
+coming soon
