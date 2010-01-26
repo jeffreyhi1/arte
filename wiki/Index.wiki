@@ -1,12 +1,14 @@
 #labels Arte,Index,Documentation
 = Introduction =
 
-Add your content here.
+This plugin extend ajax functionality of your web page. It brings the possibility to execute custom and repetitive actions in background of the page, so you can dialog with the server in real time.
+It manages a continuous connection with the server. It create a *customizable loop* with an action queue to add some actions and *parse automatically* the XML response of the server to execute your appropriate/custom actions.
 
 
-= Details =
+= Menu =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  # [http://code.google.com/p/arte/wiki/Options Options]
+  # [http://code.google.com/p/arte/wiki/Functions Functions]
+  # [http://code.google.com/p/arte/wiki/Examples Examples]
+
+= Quick Overview =
