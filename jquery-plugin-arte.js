@@ -3,11 +3,11 @@
  *
  * @author arthur.obriot
  * 
- * @version 1.0 beta
+ * @version 1.0
  * project site: http://plugins.jquery.com/project/Arte
+ * developing website: http://code.google.com/p/arte/
+ *
  */
-
-*/
 
 (function() {
 
@@ -19,12 +19,10 @@
 	// this function test if parameters are not already initialized
 	function _manage_parameter(setting) {
 		var config = {
-			'start':			false,	// true|false	Start immediatly this one, no need to call 'start' procedure
 			'time':				1000,	// int			Timer tick beetwen each round
 			'ajax_mode':		'POST',	// GET|POST		like the jquery ajax data_mode
 			'ajax_type':		'text',	// text|xml 	like the jquery ajax data_type
 			'ajax_url':			'',		// url of the ajax request
-			'no_cache':			false,	// true|false	shall we force the ajax request ? (because of cache, the ajax request was not sometimes sent
 			'on_data_set':		null,	// routine which has to be called before the ajax request (usefull to set ajax parameter). It has to return a string like "arg1=toto&arg2=titi"
 			'on_success':		null	// routine(text, xml) which will be called when the loop end a round
 		};
@@ -37,9 +35,6 @@
 			
 			// set the options of configuration as definitly set
 			_config = config;
-			
-			// if option 'start' is true, we launch now the loop
-			if (_config['start'])	_start();
 		}
 	}
 	
@@ -133,8 +128,8 @@
 		
 		// make public links with hidden functions
 		return {
-			is_started:	_is_started,
 			start:		_start,
+			is_started:	_is_started,
 			stop:		_stop,
 			toogle:		_toogle,
 			set:		_set,
