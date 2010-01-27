@@ -43,9 +43,27 @@ don't work, coming soon
 
   * *on_data_set*
 It set the function which will be called before each ajax request to build the arguement string, so this function has to return a string type.
+Ex:
+{{{
+function set_post_data(){
+  return "arg1=" + arg1 + "&arg2=" + arg2;
+}
+}}}
 
   * *on_success*
 It set the function which will be called after the ajax request
+Ex:
+{{{
+/* From a text response */
+function manage_text_result(data){
+  alert("Response: " + data);
+}
+
+/* From a xml response */
+function manage_xml_response(data){
+  alert("Response: " + $(data).text() + " (attribut: " + $(data).attr('id'));
+}
+}}}
 
 
 = Functions =
