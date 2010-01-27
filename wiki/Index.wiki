@@ -1,8 +1,8 @@
 #labels Arte,Index,Documentation
   # [#Introduction Introduction]
-  # Options
-  # Functions
-  # Examples
+  # [#Options Options]
+  # [#Functions Functions]
+  # [#Examples Examples]
 
 = Introduction =
 
