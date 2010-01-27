@@ -1,4 +1,9 @@
 #labels Arte,Index,Documentation
+  # [#Introduction Introduction]
+  # Options
+  # Functions
+  # Examples
+
 = Introduction =
 
 This plug-in extend Ajax functionality of your web page. It brings the possibility to execute custom and repetitive actions in background of the page, so you can dialog with the server in real time.
