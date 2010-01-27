@@ -120,6 +120,20 @@
 		_list_xml_actions.push(new _XmlItem(node_name, fct));
 		return this;
 	}
+	
+	// same as above but remove the node_name from the action list
+	function _del_custom_xml_actions(node_name)
+	{
+		// rebuild a new clean action list
+		var newtab = new Array();
+		for (i = 0; i < _list_xml_actions.length; i++)
+			if (_list_xml_actions[i].node_name != node_name)
+				newtab.push(_list_xml_actions[i]);
+		// update the custom list
+		_list_xml_actions = newtab;
+
+		return this;
+	}
 
 	$.arte = (function (settings)
 	{
@@ -134,7 +148,8 @@
 			toogle:		_toogle,
 			set:		_set,
 			launch:		_launch_loop,
-			add_action:	_add_custom_xml_actions
+			add_action:	_add_custom_xml_actions,
+			del_action:	_del_custom_xml_actions
 		};
 	});
 	
