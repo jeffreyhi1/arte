@@ -21,30 +21,30 @@ $.arte().set('option_name', new_value);
 
 *Here is now the list of available options*
 
-  * 'time'
+  * *time*
 It is an integer
 It is the timer tick between each call of the loop
 
-  * 'ajax_mode'
+  * *ajax_mode*
 Can be 'GET' or 'POST'
 It is used for the ajax query inside the loop.
 
-  * 'ajax_type'
+  * *ajax_type*
 Same as the ajax type of ajax jquery standard
 Most common are 'text' or 'xml'
 It set the response type of the ajax request
 
-  * 'ajax_url'
+  * *ajax_url*
 it has to be an url format (like http://google.com, ajax_code.php or users.xml)
 It is the remote file we want to access
 
-  * 'no_cache'
+  * *no_cache*
 don't work, coming soon
 
-  * 'on_data_set'
+  * *on_data_set*
 It set the function which will be called before each ajax request to build the arguement string, so this function has to return a string type.
 
-  * 'on_success'
+  * *on_success*
 It set the function which will be called after the ajax request
 
 
@@ -52,28 +52,28 @@ It set the function which will be called after the ajax request
 
 We can use some function to manage the background loop. Here's the list:
 
-  * 'start'
+  * *start*
 Used to start the background loop.
 ex: 
 {{{
 $.arte().start();
 }}}
 
-  * 'stop'
+  * *stop*
 Used to stop the background loop.
 ex: 
 {{{
 $.arte().stop();
 }}}
 
-  * 'toogle'
+  * *toogle*
 Like JQuery toogle, it alternate automatically start and stop.
 ex: 
 {{{
 $.arte().toogle();
 }}}
 
-  * 'set'
+  * *set*
 Change an option.
 Prototype: 
 {{{
@@ -84,7 +84,7 @@ ex:
 $.arte().set('time', 5000);
 }}}
 
-  * 'add_action'
+  * *add_action*
 In the case of xml mode only, it adds a custom command to parse the xml response.
 Prototype: 
 {{{
@@ -107,7 +107,7 @@ In the above example, we may used the following xml response:
 </content>
 }}}
 
-  * 'del_action'
+  * *del_action*
 In the case of xml mode only, it deletes a custom command which has been added by 'add_action'
 Prototype: 
 {{{
