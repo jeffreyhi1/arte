@@ -13,10 +13,3 @@ function success(arg)
 	nb++;
 	$("#test").text(nb);
 }
-
-function crier(elt)
-{
-}
-function crier2(elt)
-{
-}
