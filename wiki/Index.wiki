@@ -109,7 +109,7 @@ In the above example, we may used the following xml response:
     <user>titi</user>
   </users>
 </content>
-
+}}}
 
 = Examples =
 
