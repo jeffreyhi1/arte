@@ -1,7 +1,8 @@
 #labels arte,example,demo
 ==The more simple example we can demonstrate is a field refreshed in real time==
 
-(you can go to the source tab to download the 'demo' folder which contains the following example.
+(you can go to the source tab to download the 'demo' folder which contains the following example)
+
 file ajax.php:
 {{{
 <?php
