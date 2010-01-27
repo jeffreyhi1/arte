@@ -21,10 +21,6 @@ $.arte().set('option_name', new_value);
 
 *Here is now the list of available options*
 
-  * 'start'
-Can be true or false
-It start immediatly the loop, no needs to call the method start.
-
   * 'time'
 It is an integer
 It is the timer tick between each call of the loop
@@ -89,7 +85,7 @@ $.arte().set('time', 5000);
 }}}
 
   * 'add_action'
-In the case of xml mode only, it add a custom command to parse the xml response.
+In the case of xml mode only, it adds a custom command to parse the xml response.
 Prototype: 
 {{{
 $.arte().add_action('xml_node_path', fct);
@@ -110,6 +106,14 @@ In the above example, we may used the following xml response:
   </users>
 </content>
 }}}
+
+  * 'del_action'
+In the case of xml mode only, it deletes a custom command which has been added by 'add_action'
+Prototype: 
+{{{
+$.arte().del_action('xml_node_path');
+}}}
+
 
 = Examples =
 
