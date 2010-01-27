@@ -1,8 +1,0 @@
-#labels wiki,menu
-==menu==
-
-  * Index
-  * Quick explanation
-  * Examples
-  * Options list
-  * Functions list
