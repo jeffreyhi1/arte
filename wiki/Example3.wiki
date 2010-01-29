@@ -1,3 +1,10 @@
+== Explanations ==
+
+This demo read an XML file in the server, and display users & groups in it.
+After each turn, a confirmation popup is launched to be able to stop the loop.
+
+== Sources ==
+
 The xml server side file:
 {{{
 <?xml version="1.0" encoding="ISO-8859-1"?>
