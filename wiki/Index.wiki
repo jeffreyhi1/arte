@@ -1,13 +1,40 @@
 #labels Arte,Index,Documentation
   # [#Introduction Introduction]
+  # [#Getting_Started Getting_Started]
   # [#Options Options]
   # [#Functions Functions]
   # [#Examples Examples]
+
 
 = Introduction =
 
 This plug-in extend Ajax functionality of your web page. It brings the possibility to execute custom and repetitive actions in background of the page, so you can dialog with the server in real time.
 It manages a continuous connection with the server. It create a *customizable loop* with an action queue to add some actions and *parse automatically* the XML response of the server to execute your appropriate/custom actions.
+
+
+
+= Getting Started =
+
+First of all, we need to initialize the Arte engine:
+{{{
+  $.arte(options);
+}}}
+If you want to *send some data* in the server on each turn, you can use the 'on_data_set' option.
+To control the engine, you have to use the start/stop functions
+To analyze the received data from the server, three possibilities:
+  * use the 'on_success' option to set the function which will be called after each success of the loop. Use the data argument to manage results.
+  * use the auto parsing functions: add_action/del_action. It analyzes automatically the xml node given in argument of the 'add_action' function.
+Ex: a server script return an xml file `'...<user>ARTHUR</user>...'` ('...' means the XML file may have something before or after the user tag). A simple call of:
+{{{
+  $.arte({...}).add_action("user", function(node){ alert("the result is: " + $(node).text()); })
+               .start();
+}}}
+  * the last and more powerful way to update in real time an HTML field: using the JQuery selector system. *After having initialized Arte*, just simply type:
+{{{
+  $(my_selection_of_html_elements).arte("xml_node");
+}}}
+It will use xml return values to update the selected HTML fields.
+
 
 
 = Options =
