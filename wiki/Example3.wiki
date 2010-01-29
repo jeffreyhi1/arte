@@ -32,8 +32,8 @@ The html file:
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$.arte({'ajax_url':'test.xml', 'on_success': check_continue}).add_action("users user", fct_1)
-				                               				.add_action("groupes groupe", fct_2)
-											  .start();
+				                               				     .add_action("groupes groupe", fct_2)
+											     .start();
 			});
 			
 			function fct_1(data){
