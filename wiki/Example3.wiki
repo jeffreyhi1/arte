@@ -5,7 +5,7 @@ Then, we get this two value by auto parsing the xml result.
 
 == Sources ==
 
-The PHPl server side file:
+The PHP server side file:
 {{{
 <?php
 	header("content-type: application/xml");
