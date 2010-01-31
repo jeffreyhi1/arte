@@ -5,6 +5,7 @@ It call a PHP file to get two custom values: a random integer and the time serve
 On the Client side, the script parse the xml response automatically to refresh new values.
 
 <u>The particularity of this method is that we will using a single call the arte function and will return only one type of xml node.</u>
+
 Here we go:
 
 == Sources ==
