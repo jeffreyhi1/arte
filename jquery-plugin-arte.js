@@ -25,7 +25,9 @@
 			'ajax_type':		'text',	// text|xml 	like the jquery ajax data_type
 			'ajax_url':			'',		// url of the ajax request
 			'on_data_set':		null,	// routine which has to be called before the ajax request (usefull to set ajax parameter). It has to return a string like "arg1=toto&arg2=titi"
-			'on_success':		null	// routine(text, xml) which will be called when the loop end a round
+			'on_success':		null,	// routine(text, xml) which will be called when the loop end a round
+			'mode': 			'loop',	// loop|one		mode of the engine, 'loop' means it makes repeated action and 'none' make the action only one time
+			'success_position':	'after'	// after|before	execute the function 'on_success' before or after custom actions added by add_action.
 		};
 		
 		// is it the first time we have called arte ?
@@ -45,7 +47,7 @@
 		if (_is_started == false)
 		{
 			_is_started = true;
-			_launch_loop();
+			setTimeout("$.arte().launch()", _config['time']);
 		}
 		return this;
 	}
@@ -61,12 +63,9 @@
 	function _toogle()
 	{
 		if (_is_started == true)
-			_is_started = false;
+			_stop();
 		else
-		{
-			_is_started = true;
-			_launch_loop();
-		}
+			_start();
 	}
 	
 	// used to manage parameters after the initialisation of arte
@@ -104,20 +103,24 @@
 			data: 		ajax_data,
 			dataType: 	_config['ajax_type'],
 			success: 	function(data, textStatus){
+				// call the final success function BUT only if position = before
+				if (_config['on_success'] && _config['success_position'] == 'before')	
+					_config['on_success'](data);
 				// execute the custom list of action with some xml nodes
 				if (_list_xml_actions.length > 0)
 					_execute_custom_xml_actions(data);
 				// auto refresh the list of html element
 				if (_list_html_node.length > 0)
 					_execute_custom_html_nodes(data);
-				// call the final success function
-				if (_config['on_success'])	
+				// call the final success function BUT only if position = after
+				if (_config['on_success'] && _config['success_position'] == 'after')	
 					_config['on_success'](data);
 			}
 		});
 		
 		// launch automatically a new cycle
-		setTimeout("$.arte().launch()", _config['time']);
+		if (_config['mode'] == 'loop')
+			setTimeout("$.arte().launch()", _config['time']);
 	}
 	
 	// this function, which takes the xml response from the ajax query, parse the response
@@ -137,8 +140,23 @@
 	{
 		for (i = 0; i < _list_html_node.length; i++)
 		{
-			$(data_xml).find(_list_html_node[i].node_name).each(function (){
-				$(_list_html_node[i].elt).text($(this).text());
+			// start the counter of html items
+			var num_html = 0;
+			_list_html_node[i].elt.each(function ()
+			{
+				num_html++;
+				// backup the html element
+				var html_item = this;
+				// start the counter of xml item
+				var num_xml = 0;
+				$(data_xml).find(_list_html_node[i].node_name).each(function ()
+				{
+					num_xml++;
+					
+					// synchronize the html item with the xml one
+					if (num_html == num_xml)
+						$(html_item).text($(this).text());
+				});								  
 			});
 		}
 	}
@@ -196,29 +214,26 @@
 	// if no arguement is passed, stop the auto refresh for these nodes
 	$.fn.arte = (function (node_name)
 	{
-		// parse the list of html node
-		this.each(function() {
-			if (node_name)
-			{
-				// add the element, and test if the element doesn't already exist
-				var is_in = false;
-				for (i = 0; i < _list_html_node.length; i++)
-					if (_list_html_node[i].elt == this)
-						is_in = true;
-				if (is_in == false)
-					_list_html_node.push(new _HtmlAuto(this, node_name));
-			}
-			else
-			{
-				// remove the element
-				var newtab = new Array();
-				for (i = 0; i < _list_html_node.length; i++)
-					if (_list_html_node[i].elt != this)
-						newtab.push(_list_html_node[i]);
-				// update the custom list
-				_list_html_node = newtab;
-			}
-		});
+		if (node_name)
+		{
+			// add the element, and test if the element doesn't already exist
+			var is_in = false;
+			for (i = 0; i < _list_html_node.length; i++)
+				if (_list_html_node[i].elt == this)
+					is_in = true;
+			if (is_in == false)
+				_list_html_node.push(new _HtmlAuto(this, node_name));
+		}
+		else
+		{
+			// remove the element
+			var newtab = new Array();
+			for (i = 0; i < _list_html_node.length; i++)
+				if (_list_html_node[i].elt != this)
+					newtab.push(_list_html_node[i]);
+			// update the custom list
+			_list_html_node = newtab;
+		}
 	
 		return this;
 	});
