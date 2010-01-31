@@ -58,6 +58,11 @@ $.arte().set('option_name', new_value);
 It is an integer
 It is the timer tick between each call of the loop
 
+  * *mode*
+It can be 'loop' or 'none' (default: 'loop')
+It set the engine as a repetitive loop or not.
+idea: The 'none' case can be used as a timer custom action (because of the 'time' option)
+
   * *ajax_mode*
 Can be 'GET' or 'POST'
 It is used for the ajax query inside the loop.
@@ -97,6 +102,10 @@ function manage_xml_response(data){
   alert("Response: " + $(data).text() + " (attribut: " + $(data).attr('id'));
 }
 }}}
+
+  * *success_position*
+It can be 'before' or 'after' (default 'after')
+It put the function on_success call before or after the custom function list build with 'add_action' (see the function 'add_Action' for more information)
 
 
 = Functions =
@@ -204,3 +213,4 @@ function my_fct(data){
   # basic PHP example [http://code.google.com/p/arte/wiki/Example1 here]
   # basic XML example [http://code.google.com/p/arte/wiki/Example2 here]
   # Auto refresh HTML fields [http://code.google.com/p/arte/wiki/Example3 here]
+  # Auto refresh HTML fields even easier [http://code.google.com/p/arte/wiki/Example4 here]
