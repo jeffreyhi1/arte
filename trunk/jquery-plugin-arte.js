@@ -3,7 +3,7 @@
  *
  * @author arthur.obriot
  * 
- * @version 1.0
+ * @version 1.7
  * project site: http://plugins.jquery.com/project/Arte
  * developing website: http://code.google.com/p/arte/
  *
@@ -24,10 +24,11 @@
 			'ajax_mode':		'POST',	// GET|POST		like the jquery ajax data_mode
 			'ajax_type':		'text',	// text|xml 	like the jquery ajax data_type
 			'ajax_url':			'',		// url of the ajax request
-			'on_data_set':		null,	// routine which has to be called before the ajax request (usefull to set ajax parameter). It has to return a string like "arg1=toto&arg2=titi"
+			'on_data_set':		function(){return "";},	// routine which has to be called before the ajax request (usefull to set ajax parameter). It has to return a string like "arg1=toto&arg2=titi"
 			'on_success':		null,	// routine(text, xml) which will be called when the loop end a round
 			'mode': 			'loop',	// loop|one		mode of the engine, 'loop' means it makes repeated action and 'none' make the action only one time
-			'success_position':	'after'	// after|before	execute the function 'on_success' before or after custom actions added by add_action.
+			'success_position':	'after',	// after|before	execute the function 'on_success' before or after custom actions added by add_action.
+			'beforeSend':		function(){return null;}	// function executed before sending ajax request
 		};
 		
 		// is it the first time we have called arte ?
@@ -94,14 +95,15 @@
 		if (_is_started == false) return;
 		
 		// create the next package to send
-		var ajax_data = (_config['on_data_set']) ? _config['on_data_set']() : "";
 		
 		// set the ajax request
 		$.ajax({
 			type: 		_config['ajax_mode'],
 			url: 		_config['ajax_url'],
-			data: 		ajax_data,
+			timeout:	_config['time'],
+			data: 		_config['on_data_set'](),
 			dataType: 	_config['ajax_type'],
+			beforeSend:	function(){_config['beforeSend']()},
 			success: 	function(data, textStatus){
 				// call the final success function BUT only if position = before
 				if (_config['on_success'] && _config['success_position'] == 'before')	
